@@ -1,9 +1,7 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -15,3 +13,10 @@ export default {
   }),
 };
 </script>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Mulish";
+}
+</style>
