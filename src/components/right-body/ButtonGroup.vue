@@ -33,7 +33,7 @@
       :class="{ hide: isActive2 }"
       @click="selcetPriceOtpion(priceOption2)"
     >
-      <p>{{ priceOption2 }}</p>
+      <p style="padding: 15px">{{ priceOption2 }}</p>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       selected: "Popularity",
     };
   },
- 
+
   methods: {
     selectedButton(data) {
       this.selected = data;
@@ -72,9 +72,9 @@ export default {
   visibility: hidden;
 }
 #list {
-  width: 245px;
+  width: 225px;
   margin-top: 5px;
-  margin-left: 245px;
+  margin-left: 225px;
   background: #fff;
   border-radius: 5px;
   overflow: hidden;
@@ -95,6 +95,7 @@ export default {
 }
 .button-group {
   margin-top: 15px;
+  width: 904px;
 }
 .c-btn {
   width: 226px;

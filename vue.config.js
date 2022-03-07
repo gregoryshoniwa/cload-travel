@@ -1,3 +1,5 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
+  devServer: {
+    proxy: "https://hiring.zumata.xyz",
+  },
 };

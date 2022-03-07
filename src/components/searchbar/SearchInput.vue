@@ -1,24 +1,26 @@
 <template>
-  <div class="selector" @click="openSelector">
-    <div id="select-field">
-      <i
-        class="material-icons"
-        style="font-size: 25px; color: #757575; padding-right: 15px"
-      >
-        search
-      </i>
-      <div id="select-text">{{ selectedCity }}</div>
-    </div>
-    <div id="list" :class="{ hide: isActive }">
-      <li
-        class="options"
-        v-for="(city, index) in apiData"
-        :key="index"
-        @click="selectCity(city.label)"
-      >
-        <img src="@/assets/location-icon.png" alt="location-icon" />
-        <p>{{ city.label }}</p>
-      </li>
+  <div>
+    <div class="selector" @click="openSelector">
+      <div id="select-field">
+        <i
+          class="material-icons"
+          style="font-size: 25px; color: #757575; padding-right: 15px"
+        >
+          search
+        </i>
+        <div id="select-text">{{ selectedCity }}</div>
+      </div>
+      <div id="list" :class="{ hide: isActive }">
+        <li
+          class="options"
+          v-for="(city, index) in cities"
+          :key="index"
+          @click="selectCity(city)"
+        >
+          <img src="@/assets/location-icon.png" alt="location-icon" />
+          <p style="padding: 15px; color: #333333">{{ city.label }}</p>
+        </li>
+      </div>
     </div>
   </div>
 </template>
@@ -28,30 +30,28 @@ export default {
   data() {
     return {
       selectedCity: "",
+      selectedCityCode: "",
       isActive: true,
-      apiData: [
-        {
-          label: "Singapore, Singapore",
-          cityCode: "sgsg",
-        },
-        {
-          label: "Kuala Lumpur, Malaysia",
-          cityCode: "klmy",
-        },
-        {
-          label: "Manila, Philippines",
-          cityCode: "mlph",
-        },
-      ],
     };
   },
+  computed: {
+    cities() {
+      return this.$store.getters.getCityResults;
+    },
+  },
+
   methods: {
     selectCity(data) {
-      this.selectedCity = data;
+      this.selectedCity = data.label;
+      this.selectedCityCode = data.cityCode;
       this.isActive = false;
+      this.$store.dispatch("setResults", this.selectedCityCode);
     },
     openSelector() {
       this.isActive = !this.isActive;
+    },
+    hidePopUps() {
+      console.log("clicked");
     },
   },
 };
@@ -67,6 +67,7 @@ export default {
   left: 145px;
   top: 10px;
   border-radius: 3px;
+  margin-left: 145px;
 }
 #select-field {
   width: 100%;

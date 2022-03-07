@@ -29,13 +29,10 @@ export default {
 <style scoped>
 .headerbar {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 10px;
   height: 70px;
   width: 100%;
-  left: 0px;
-  top: 0px;
   border-radius: 3px;
   background: #002d63;
 }
